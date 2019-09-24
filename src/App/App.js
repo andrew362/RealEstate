@@ -1090,7 +1090,7 @@ class App extends Component {
 
                 <Switch>
                   <Route path="/" exact render={() => (<HomeContent isSignedIn={isSignedIn} title={settings.title} />)} />
-                  <Route path="/explore" render={() => (<ExploreContent />)} />
+                  <Route path="/explore" render={() => (<ExploreContent isSignedIn={isSignedIn} />)} />
                   <Route path="/edit" render={() => (<EditContent onSignUpClick={this.openSignUpDialog} onSignInClick={this.openSignInDialog} isSignedIn={isSignedIn} title={settings.titleEdit} />)} />
                   <Route component={NotFoundContent} />
                 </Switch>
