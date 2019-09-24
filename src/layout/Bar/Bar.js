@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import {Link} from 'react-router-dom';
 
 import PersonIcon from '@material-ui/icons/Person';
 
@@ -75,7 +76,7 @@ class Bar extends Component {
     return (
       <AppBar color="primary" position="static">
         <Toolbar variant="regular">
-          <Typography style={{ flexGrow: 1 }} color="inherit" variant="h6">{title}</Typography>
+          <Typography component={Link} to='/' style={{ flexGrow: 1 }} color="inherit" variant="h6">{title}</Typography>
 
           {isSignedIn &&
             <React.Fragment>

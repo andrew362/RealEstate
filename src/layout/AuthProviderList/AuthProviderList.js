@@ -10,10 +10,10 @@ import Hidden from '@material-ui/core/Hidden';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 
-import FacebookBoxIcon from 'mdi-material-ui/FacebookBox';
+
 import GoogleIcon from 'mdi-material-ui/Google';
 import GitHubCircleIcon from 'mdi-material-ui/GithubCircle';
-import TwitterIcon from 'mdi-material-ui/Twitter';
+
 
 const styles = (theme) => ({
   dialogActions: {
@@ -75,10 +75,6 @@ class AuthProviderList extends Component {
       <React.Fragment>
         <Hidden only="xs">
           <DialogActions className={classes.dialogActions}>
-            <Button className={classes.facebook} disabled={isPerformingAuthAction} variant="contained" onClick={() => onAuthProviderClick(new firebase.auth.FacebookAuthProvider())}>
-              <FacebookBoxIcon className={classes.icon} />
-              Facebook
-            </Button>
 
             <Button className={classes.google} disabled={isPerformingAuthAction} variant="contained" onClick={() => onAuthProviderClick(new firebase.auth.GoogleAuthProvider())}>
               <GoogleIcon className={classes.icon} />
@@ -90,19 +86,11 @@ class AuthProviderList extends Component {
               GitHub
             </Button>
 
-            <Button className={classes.twitter} disabled={isPerformingAuthAction} variant="contained" onClick={() => onAuthProviderClick(new firebase.auth.TwitterAuthProvider())}>
-              <TwitterIcon className={classes.icon} />
-              Twitter
-            </Button>
           </DialogActions>
         </Hidden>
 
         <Hidden only={['sm', 'md', 'lg', 'xl']}>
           <DialogActions className={classes.dialogActionsMobile} disableSpacing>
-            <Button className={`${classes.facebook} ${classes.buttonMobile}`} disabled={isPerformingAuthAction} variant="contained" onClick={() => onAuthProviderClick(new firebase.auth.FacebookAuthProvider())}>
-              <FacebookBoxIcon className={classes.icon} />
-              Facebook
-            </Button>
 
             <Button className={`${classes.google} ${classes.buttonMobile}`} disabled={isPerformingAuthAction} variant="contained" onClick={() => onAuthProviderClick(new firebase.auth.GoogleAuthProvider())}>
               <GoogleIcon className={classes.icon} />
@@ -114,10 +102,6 @@ class AuthProviderList extends Component {
               GitHub
             </Button>
 
-            <Button className={`${classes.twitter} ${classes.buttonMobile}`} disabled={isPerformingAuthAction} variant="contained" onClick={() => onAuthProviderClick(new firebase.auth.TwitterAuthProvider())}>
-              <TwitterIcon className={classes.icon} />
-              Twitter
-            </Button>
           </DialogActions>
         </Hidden>
       </React.Fragment>

@@ -30,6 +30,7 @@ import LaunchScreen from '../layout/LaunchScreen/LaunchScreen';
 import Bar from '../layout/Bar/Bar';
 
 import HomeContent from '../content/HomeContent/HomeContent';
+import EditContent from '../content/EditContent/EditContent';
 import NotFoundContent from '../content/NotFoundContent/NotFoundContent';
 
 import SignUpDialog from '../dialogs/SignUpDialog/SignUpDialog';
@@ -39,6 +40,7 @@ import WelcomeDialog from '../dialogs/WelcomeDialog/WelcomeDialog';
 import SettingsDialog from '../dialogs/SettingsDialog/SettingsDialog';
 import InputDialog from '../dialogs/InputDialog/InputDialog';
 import ConfirmationDialog from '../dialogs/ConfirmationDialog/ConfirmationDialog';
+import ExploreContent from '../content/ExploreContent/ExploreContent';
 
 firebase.initializeApp(settings.credentials.firebase);
 
@@ -1088,6 +1090,8 @@ class App extends Component {
 
                 <Switch>
                   <Route path="/" exact render={() => (<HomeContent isSignedIn={isSignedIn} title={settings.title} />)} />
+                  <Route path="/explore" exact render={() => (<ExploreContent />)} />
+                  <Route path="/edit" exact render={() => (<EditContent onSignUpClick={this.openSignUpDialog} onSignInClick={this.openSignInDialog} isSignedIn={isSignedIn} title={settings.titleEdit} />)} />
                   <Route component={NotFoundContent} />
                 </Switch>
 

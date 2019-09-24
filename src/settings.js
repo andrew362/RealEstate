@@ -24,6 +24,7 @@ import blueGray from '@material-ui/core/colors/blueGrey';
 
 const settings = {
   title: 'Real Estate',
+  titleEdit: 'Real Estate Editor',
 
   theme: {
     primaryColor: {
@@ -39,7 +40,7 @@ const settings = {
 
   credentials: {
     firebase: {
-      apiKey: process.env.REACT_APP_API_KEY,
+      apiKey: process.env.REACT_APP_apiKey,
       authDomain: process.env.REACT_APP_authDomain,
       databaseURL: process.env.REACT_APP_databaseURL,
       projectId: process.env.REACT_APP_projectId,

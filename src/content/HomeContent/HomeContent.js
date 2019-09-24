@@ -8,14 +8,15 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Fab from '@material-ui/core/Fab';
 
-import CodeIcon from '@material-ui/icons/Code';
 import HomeIcon from '@material-ui/icons/Home';
 
-import GitHubCircleIcon from 'mdi-material-ui/GithubCircle';
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import LanguageIcon from '@material-ui/icons/Language';
+import EditIcon from '@material-ui/icons/Edit';
 
 import EmptyState from '../../layout/EmptyState/EmptyState';
 
-const styles = (theme) => ({
+const styles = theme => ({
   emptyStateIcon: {
     fontSize: theme.spacing(12)
   },
@@ -41,12 +42,32 @@ class HomeContent extends Component {
       return (
         <EmptyState
           icon={<HomeIcon className={classes.emptyStateIcon} color="action" />}
-          title="Home"
-          description="Use React + Material-UI + Firebase as the starting-point for your project"
+          title="Welcome to Admin Panel"
+          description="Add, edit, modify your properties"
           button={
-            <Fab className={classes.button} color="secondary" component={Link} to="/some-magic" variant="extended">
-              Click For Some Magic
-            </Fab>
+            <>
+              <Fab
+                className={classes.button}
+                color="secondary"
+                component={Link}
+                to="/edit"
+                variant="extended"
+              >
+                <EditIcon className={classes.buttonIcon} />
+                Edit properties
+              </Fab>
+              <br />
+              <Fab
+                className={classes.button}
+                color="secondary"
+                href="/explore"
+                target="_self"
+                variant="extended"
+              >
+                <LanguageIcon className={classes.buttonIcon} />
+                Explore
+              </Fab>
+            </>
           }
         />
       );
@@ -54,13 +75,21 @@ class HomeContent extends Component {
 
     return (
       <EmptyState
-        icon={<CodeIcon className={classes.emptyStateIcon} color="action" />}
-        title={title}
-        description="The three musketeers, all in one pack in the form of a boilerplate app"
+        icon={
+          <HomeWorkIcon className={classes.emptyStateIcon} color="action" />
+        }
+        title={`Welcome in ${title}`}
+        description="Explore out properties!"
         button={
-          <Fab className={classes.button} color="secondary" href="https://github.com/Phoqe/react-material-ui-firebase" rel="noopener noreferrer" target="_blank" variant="extended">
-            <GitHubCircleIcon className={classes.buttonIcon} />
-            GitHub
+          <Fab
+            className={classes.button}
+            color="secondary"
+            href="/explore"
+            target="_self"
+            variant="extended"
+          >
+            <LanguageIcon className={classes.buttonIcon} />
+            Explore
           </Fab>
         }
       />
