@@ -1,54 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 import { GET, POST, PATCH, DELETE, DELETE_ALL } from '../helpers/urls';
 
 export default function useFetchApi(adToolName) {
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [overwriteSuccessMessage, setOverwriteSuccessMessage] = useState('');
-  const [overwriteErrorMessage, setOverwriteErrorMessage] = useState('');
-  const [removeSuccessMessage, setRemoveSuccessMessage] = useState('');
+  const [message, setMessage] = useState('');
   const [allConfigurations, setAllConfigurations] = useState(null);
-  const [chosenConfiguration, setChosenConfiguration] = useState('select');
 
-  useEffect(() => {
-    let isSubscribed = true;
+  const getAllConfigurations = () => {
     axios
-      .get(`${GET}`)
-      .then(res => {
-        if (isSubscribed) {
+    .get(`${GET}`)
+    .then(res => {
+        if(res.status === 200){
           const data = res.data.data;
           if (data.length !== 0) setAllConfigurations(data);
+        } else {
+          setMessage('error/' + Math.random());
+          console.log(res);
         }
-      })
-      .catch(err => {
-        return isSubscribed ? 
-        console.error('Nie udało się pobrać danych. ', err) : 
-        null;
-      });
-
-    return () => (isSubscribed = false);
-  }, []);
+    })
+    .catch(err => {
+      setMessage('error/' + Math.random());
+      console.log(err);
+    });
+  }
 
   const saveConfiguration = config => {
-    axios.post(`${POST}/adtools`, config)
+    axios.post(`${POST}`, config)
       .then(res => {
-        const configurations = res.data.body.formConfigurations;
-        setSuccessMessage(res.data.message);
-        if (allConfigurations) {
-          setAllConfigurations([...allConfigurations, configurations[configurations.length - 1]]);
+        console.log(res);
+        if(res.data.status === 'success'){
+          setMessage('create/' + Math.random());
+          getAllConfigurations();
+        } else {
+          setMessage('error/' + Math.random());
+          console.log(res);
         }
-        setChosenConfiguration(configurations[configurations.length - 1]._id);
-        setTimeout(() => {
-          setSuccessMessage('');
-        }, 5000);
       })
       .catch(err => {
-        setErrorMessage(err.response.data.message);
-        setTimeout(() => {
-          setErrorMessage('');
-        }, 5000);
+        setMessage('error/' + Math.random());
+        console.log(err);
       });
   };
 
@@ -56,34 +47,56 @@ export default function useFetchApi(adToolName) {
     axios.post(`${PATCH}/${config.id}`, config)
       .then(res => {
         console.log(res);
-        setTimeout(() => {
-          setOverwriteSuccessMessage('');
-        }, 5000);
+        if(res.data.status === 'success'){
+          setMessage('update/' + Math.random());
+        } else {
+          setMessage('error/' + Math.random());
+          console.log(res);
+        }
       })
       .catch(err => {
-        setOverwriteErrorMessage(err.response.data.message);
-        setTimeout(() => {
-          setOverwriteErrorMessage('');
-        }, 5000);
+        setMessage('error/' + Math.random());
+        console.log(err);
       });
   };
 
-  const removeConfiguration = () => {
-    axios.delete(`${DELETE}/adtools/${adToolName}/${chosenConfiguration}`)
+  const removeConfiguration = config => {
+    axios.post(`${DELETE}/${config.id}`, config)
       .then(res => {
-        setAllConfigurations(allConfigurations.filter(config => config._id !== chosenConfiguration));
-        setChosenConfiguration('select');
-        setRemoveSuccessMessage(res.data.message);
-        setTimeout(() => {
-          setRemoveSuccessMessage('');
-        }, 5000);
+        console.log(res);
+        if(res.data.status === 'success'){
+          setMessage('delete/' + Math.random());
+          getAllConfigurations();
+        } else {
+          setMessage('error/' + Math.random());
+          console.log(res);
+        }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setMessage('error/' + Math.random());
+        console.log(err);
+      });
   };
 
-  const setConfiguration = configId => {
-    setChosenConfiguration(configId);
+  const removeAllConfiguration = () => {
+    axios.post(`${DELETE_ALL}`)
+      .then(res => {
+        console.log(res);
+        if(res.data.status === 'success'){
+          setMessage('delete/' + Math.random());
+          getAllConfigurations();
+          console.log(res);
+        } else {
+          setMessage('error/' + Math.random());
+          console.log(res);
+        }
+      })
+      .catch(err => {
+        setMessage('error/' + Math.random());
+        console.log(err);
+      });
   };
 
-  return { saveConfiguration, overwriteConfiguration, removeConfiguration, successMessage, errorMessage, overwriteSuccessMessage, overwriteErrorMessage, removeSuccessMessage, allConfigurations, chosenConfiguration, setConfiguration };
+
+  return { getAllConfigurations, saveConfiguration, overwriteConfiguration, removeConfiguration, message, allConfigurations, removeAllConfiguration };
 }

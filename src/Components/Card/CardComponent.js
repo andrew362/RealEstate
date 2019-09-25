@@ -37,14 +37,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
- const CardComponent = ({isSignedIn, data}) => {
+ const CardComponent = ({isSignedIn, data, edit}) => {
   const classes = useStyles();
 
   return (
     <Card style={{margin: '20px auto'}} className={classes.card}>
       <CardHeader
         action={
-          isSignedIn && (<IconButton component={Link} to={'/edit?id=' + data.id} aria-label="settings">
+          isSignedIn && edit && (<IconButton component={Link} to={'/edit?id=' + data.id} aria-label="settings">
             <EditIcon className={classes.buttonIcon} />
           </IconButton>)
         }
@@ -62,6 +62,7 @@ const useStyles = makeStyles(theme => ({
           <b>Property:</b> {data.property} <br />
           <b>Type:</b> {data.type} <br />
           <b>Description:</b> {data.description} <br />
+          <b>Price:</b> {data.price} <br />
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

@@ -50,7 +50,7 @@ class HomeContent extends Component {
                 className={classes.button}
                 color="secondary"
                 component={Link}
-                to="/edit"
+                to="/explore#edit"
                 variant="extended"
               >
                 <EditIcon className={classes.buttonIcon} />
