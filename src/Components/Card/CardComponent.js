@@ -15,7 +15,8 @@ import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 250,
+    maxWidth: 350,
+    width: 300
   },
   media: {
     height: 0,
@@ -38,7 +39,6 @@ const useStyles = makeStyles(theme => ({
 
  const CardComponent = ({isSignedIn, data}) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
 
   return (
     <Card style={{margin: '20px auto'}} className={classes.card}>
@@ -48,8 +48,8 @@ const useStyles = makeStyles(theme => ({
             <EditIcon className={classes.buttonIcon} />
           </IconButton>)
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={data.city}
+        subheader={data.street}
       />
       <CardMedia
         className={classes.media}
@@ -58,7 +58,10 @@ const useStyles = makeStyles(theme => ({
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <b>Apartment:</b> {data.apartment} <br />
+          <b>Property:</b> {data.property} <br />
+          <b>Type:</b> {data.type} <br />
+          <b>Description:</b> {data.description} <br />
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

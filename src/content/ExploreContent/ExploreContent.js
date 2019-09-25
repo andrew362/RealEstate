@@ -1,5 +1,6 @@
 import React from 'react'
 import CardComponent from '../../Components/Card/CardComponent'
+import useFetchApi from '../../actions/useFetchApi';
 
 const style = {
     display: 'grid',
@@ -11,15 +12,15 @@ const style = {
 };
 
 const ExploreContent = ({isSignedIn}) => {
+
+    const {
+        allConfigurations
+      } = useFetchApi();
+      console.log(allConfigurations);
+
     return (
         <div style={style}>
-           <CardComponent data={{id: 2222}} isSignedIn={isSignedIn} />
-           <CardComponent data={{id: 2222}} isSignedIn={isSignedIn} />
-           <CardComponent data={{id: 2222}} isSignedIn={isSignedIn} />
-           <CardComponent data={{id: 2222}} isSignedIn={isSignedIn} />
-           <CardComponent data={{id: 2222}} isSignedIn={isSignedIn} />
-           <CardComponent data={{id: 2222}} isSignedIn={isSignedIn} />
-           <CardComponent data={{id: 2222}} isSignedIn={isSignedIn} />
+            {allConfigurations && allConfigurations.map(el => (<CardComponent key={el.id} data={el} isSignedIn={isSignedIn} />))}
         </div>
     )
 }
