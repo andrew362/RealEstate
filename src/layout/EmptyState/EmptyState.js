@@ -12,7 +12,9 @@ const styles = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    textAlign: 'center'
+    textAlign: 'center',
+    backgroundColor:'rgba(255,255,255,0.8)',
+    padding: '20px'
   }
 };
 

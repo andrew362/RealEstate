@@ -27,6 +27,10 @@ const styles = theme => ({
 
   buttonIcon: {
     marginRight: theme.spacing(1)
+  },
+
+  container: {
+    color: 'fff'
   }
 });
 
@@ -41,6 +45,7 @@ class HomeContent extends Component {
     if (isSignedIn) {
       return (
         <EmptyState
+          className={classes.container}
           icon={<HomeIcon className={classes.emptyStateIcon} color="action" />}
           title="Welcome to Admin Panel"
           description="Add, edit, modify your properties"

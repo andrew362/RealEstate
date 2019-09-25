@@ -12,6 +12,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import EditIcon from '@material-ui/icons/Edit';
 import {Link} from 'react-router-dom';
+import home from '../../assets/home.png';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     height: 0,
+    backgroundSize: '50%',
     paddingTop: '75%', // 4:3
   },
   expand: {
@@ -52,9 +54,10 @@ const useStyles = makeStyles(theme => ({
         subheader={data.street}
       />
       <CardMedia
+        style={{backgroundColor: `hsl(${Math.random()*256}, 90%, 90%)`}}
         className={classes.media}
-        image="https://source.unsplash.com/600x400/?architecture"
-        title="Paella dish"
+        image={home}
+        title={data.city}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">

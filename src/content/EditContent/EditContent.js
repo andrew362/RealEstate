@@ -163,7 +163,7 @@ const EditContent = ({
       {isSignedIn && values && (
         <>
           <Alert message={alertMessage} handleClose={handleClose} open={open} />
-          <form onSubmit={createHandler} className={classes.container} autoComplete="off">
+          <form style={{backgroundColor:'rgba(255,255,255,0.9)', padding: '20px'}} onSubmit={createHandler} className={classes.container} autoComplete="off">
             <TextField
               id="outlined-name"
               disabled={true}

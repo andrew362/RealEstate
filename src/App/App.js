@@ -41,6 +41,7 @@ import SettingsDialog from '../dialogs/SettingsDialog/SettingsDialog';
 import InputDialog from '../dialogs/InputDialog/InputDialog';
 import ConfirmationDialog from '../dialogs/ConfirmationDialog/ConfirmationDialog';
 import ExploreContent from '../content/ExploreContent/ExploreContent';
+import backgroundImg from '../assets/bg.jpg';
 
 firebase.initializeApp(settings.credentials.firebase);
 
@@ -1066,7 +1067,13 @@ class App extends Component {
     return (
       <Router>
         <MuiThemeProvider theme={theme}>
-          <div style={{ minHeight: '100vh', backgroundColor: theme.palette.type === 'dark' ? '#303030' : '#fafafa' }}>
+          <div style={{ 
+            backgroundImage: `url(${backgroundImg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            minHeight: '100vh',
+            backgroundColor: theme.palette.type === 'dark' ? '#303030' : '#fafafa' 
+            }}>
             {!isAuthReady &&
               <LaunchScreen />
             }
