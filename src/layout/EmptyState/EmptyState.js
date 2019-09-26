@@ -13,7 +13,6 @@ const styles = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     textAlign: 'center',
-    backgroundColor:'rgba(255,255,255,0.8)',
     padding: '20px'
   }
 };
@@ -21,13 +20,13 @@ const styles = {
 class EmptyState extends Component {
   render() {
     // Styling
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
 
     // Properties
     const { icon, title, description, button } = this.props;
 
     return (
-      <div className={classes.center}>
+      <div style={{backgroundColor: theme.palette.type === 'dark' ? '#303030' : '#fafafa',}} className={classes.center}>
         {icon}
         {title && <Typography color="textSecondary" variant="h4">{title}</Typography>}
         {description && <Typography color="textSecondary" variant="subtitle1">{description}</Typography>}

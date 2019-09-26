@@ -41,7 +41,6 @@ import SettingsDialog from '../dialogs/SettingsDialog/SettingsDialog';
 import InputDialog from '../dialogs/InputDialog/InputDialog';
 import ConfirmationDialog from '../dialogs/ConfirmationDialog/ConfirmationDialog';
 import ExploreContent from '../content/ExploreContent/ExploreContent';
-import backgroundImg from '../assets/bg.jpg';
 
 firebase.initializeApp(settings.credentials.firebase);
 
@@ -1067,10 +1066,9 @@ class App extends Component {
     return (
       <Router>
         <MuiThemeProvider theme={theme}>
-          <div style={{ 
-            backgroundImage: `url(${backgroundImg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
+          <div
+            id='mainContainer' 
+            style={{ 
             minHeight: '100vh',
             backgroundColor: theme.palette.type === 'dark' ? '#303030' : '#fafafa' 
             }}>
@@ -1096,9 +1094,9 @@ class App extends Component {
                 />
 
                 <Switch>
-                  <Route path="/" exact render={() => (<HomeContent isSignedIn={isSignedIn} title={settings.title} />)} />
+                  <Route path="/" exact render={() => (<HomeContent theme={theme} isSignedIn={isSignedIn} title={settings.title} />)} />
                   <Route path="/explore" render={() => (<ExploreContent isSignedIn={isSignedIn} />)} />
-                  <Route path="/edit" render={() => (<EditContent onSignUpClick={this.openSignUpDialog} onSignInClick={this.openSignInDialog} isSignedIn={isSignedIn} title={settings.titleEdit} />)} />
+                  <Route path="/edit" render={() => (<EditContent theme={theme} onSignUpClick={this.openSignUpDialog} onSignInClick={this.openSignInDialog} isSignedIn={isSignedIn} title={settings.titleEdit} />)} />
                   <Route component={NotFoundContent} />
                 </Switch>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -13,6 +13,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import LanguageIcon from '@material-ui/icons/Language';
 import EditIcon from '@material-ui/icons/Edit';
+import backgroundImg from '../../assets/bg.jpg';
 
 import EmptyState from '../../layout/EmptyState/EmptyState';
 
@@ -35,16 +36,34 @@ const styles = theme => ({
 });
 
 class HomeContent extends Component {
+
+  
+
+  componentWillUnmount() {
+
+    const bg = document.getElementById('mainContainer');
+    bg.style.backgroundImage = ``;
+  }
+
   render() {
     // Styling
     const { classes } = this.props;
 
     // Properties
-    const { isSignedIn, title } = this.props;
+    const { isSignedIn, title, theme } = this.props;
+
+    const { location } = this.props;
+
+    if(location.pathname === '/'){
+      const bg = document.getElementById('mainContainer');
+      bg.style.backgroundImage = `url(${backgroundImg})`;
+      bg.style.backgroundSize = 'cover';
+    }
 
     if (isSignedIn) {
       return (
         <EmptyState
+          theme={theme}
           className={classes.container}
           icon={<HomeIcon className={classes.emptyStateIcon} color="action" />}
           title="Welcome to Admin Panel"
@@ -84,7 +103,7 @@ class HomeContent extends Component {
           <HomeWorkIcon className={classes.emptyStateIcon} color="action" />
         }
         title={`Welcome in ${title}`}
-        description="Explore out properties!"
+        description="Explore our properties!"
         button={
           <Fab
             className={classes.button}
@@ -109,4 +128,4 @@ HomeContent.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(HomeContent);
+export default withRouter(withStyles(styles)(HomeContent));

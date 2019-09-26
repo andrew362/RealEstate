@@ -44,21 +44,16 @@ const EditContent = ({
   isSignedIn,
   location,
   onSignInClick,
-  onSignUpClick
+  onSignUpClick,
+  theme
 }) => {
   const {
     getAllConfigurations,
     saveConfiguration,
     overwriteConfiguration,
     removeConfiguration,
-    successMessage,
-    errorMessage,
     message,
-    overwriteErrorMessage,
-    removeSuccessMessage,
     allConfigurations,
-    chosenConfiguration,
-    setConfiguration
   } = useFetchApi();
 
   const [id, setId] = useState(null);
@@ -163,7 +158,7 @@ const EditContent = ({
       {isSignedIn && values && (
         <>
           <Alert message={alertMessage} handleClose={handleClose} open={open} />
-          <form style={{backgroundColor:'rgba(255,255,255,0.9)', padding: '20px'}} onSubmit={createHandler} className={classes.container} autoComplete="off">
+          <form style={{backgroundColor: theme.palette.type === 'dark' ? '#303030' : '#fafafa', padding: '20px'}} onSubmit={createHandler} className={classes.container} autoComplete="off">
             <TextField
               id="outlined-name"
               disabled={true}
