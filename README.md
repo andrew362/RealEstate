@@ -1,8 +1,9 @@
-# RealEstate
+# RealEstate - React App
 
 > https://real-estate-lichon.netlify.com/
 
 *To edit content you have to sign up with random email and password*
+
 
 ### To run project:
 
@@ -17,3 +18,4 @@ REACT_APP_storageBucket= ""
 REACT_APP_messagingSenderId= ""
 REACT_APP_appId= ""
 ```
+3. `npm start`
