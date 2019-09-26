@@ -26,7 +26,7 @@ class EmptyState extends Component {
     const { icon, title, description, button } = this.props;
 
     return (
-      <div style={{backgroundColor: theme.palette.type === 'dark' ? '#303030' : '#fafafa',}} className={classes.center}>
+      <div style={{backgroundColor: theme.palette.type === 'dark' ? '#303030f2' : '#fafafad4',}} className={classes.center}>
         {icon}
         {title && <Typography color="textSecondary" variant="h4">{title}</Typography>}
         {description && <Typography color="textSecondary" variant="subtitle1">{description}</Typography>}
