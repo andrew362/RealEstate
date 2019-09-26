@@ -44,7 +44,7 @@ export default function useFetchApi(adToolName) {
   };
 
   const overwriteConfiguration = config => {
-    axios.patch(`${PATCH}/${config.id}`, config)
+    axios.post(`${PATCH}/${config.id}`, config)
       .then(res => {
         console.log(res);
         if(res.data.status === 'success'){
@@ -61,7 +61,7 @@ export default function useFetchApi(adToolName) {
   };
 
   const removeConfiguration = config => {
-    axios.delete(`${DELETE}/${config.id}`, config)
+    axios.post(`${DELETE}/${config.id}`, config)
       .then(res => {
         console.log(res);
         if(res.data.status === 'success'){
@@ -79,7 +79,7 @@ export default function useFetchApi(adToolName) {
   };
 
   const removeAllConfiguration = () => {
-    axios.delete(`${DELETE_ALL}`)
+    axios.post(`${DELETE_ALL}`)
       .then(res => {
         console.log(res);
         if(res.data.status === 'success'){
