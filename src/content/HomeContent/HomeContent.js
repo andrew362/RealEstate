@@ -99,6 +99,7 @@ class HomeContent extends Component {
 
     return (
       <EmptyState
+        theme={theme}
         icon={
           <HomeWorkIcon className={classes.emptyStateIcon} color="action" />
         }
